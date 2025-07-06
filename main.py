@@ -120,6 +120,7 @@ if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('65')):
     sys.exit(1)
 
 
+
 def fetch_data():
     url = build_api_url()
     headers = {"X-Requested-With": "XMLHttpRequest"}
@@ -149,6 +150,7 @@ def fetch_data():
 already_sent = load_already_sent()
 
 
+
 def get_country_by_number(number):
     try:
         parsed_number = phonenumbers.parse(number, None)
@@ -158,6 +160,7 @@ def get_country_by_number(number):
         return country_name, flag
     except:
         return 'Unknown', '🌐'
+
 
 
 async def sent_messages():
@@ -171,7 +174,7 @@ async def sent_messages():
             service = str(row[3]).strip()
             message = str(row[5]).strip()
 
-            match = re.search(r'(\d{3}-\d{3}|\d{4,8})', message)
+            match = re.search(r'\b[A-Za-z0-9\-]{4,20}\b', message)
             otp = match.group() if match else None
 
             if otp:
@@ -222,6 +225,7 @@ async def sent_messages():
                 logging.info(f"No OTP found in: {message}")
     else:
         logging.info("No data or invalid response.")
+
 
 
 async def main():

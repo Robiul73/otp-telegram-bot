@@ -21,14 +21,10 @@ LOGIN_PAGE_URL = BASE_URL + "/ints/login"
 LOGIN_POST_URL = BASE_URL + "/ints/signin"
 DATA_URL = BASE_URL + "/ints/agent/res/data_smscdr.php"
 
-# Initialize Telegram bot
 bot = Bot(token=BOT_TOKEN)
-
-# Global session
 session = requests.Session()
 session.headers.update({"User-Agent": "Mozilla/5.0"})
 
-# Logging with colors
 logging.basicConfig(level=logging.INFO, format='\033[92m[%(asctime)s] [%(levelname)s] %(message)s\033[0m', datefmt='%Y-%m-%d %H:%M:%S')
 
 
@@ -61,7 +57,7 @@ def load_already_sent():
     return set()
 
 
-logging.info('Script By @Rafi_00019')
+logging.info('Script By @Robiul_TNE_R')
 
 
 def login():
@@ -95,7 +91,6 @@ def login():
         return False
 
 
-
 def build_api_url():
     start_date = "2025-05-05"
     end_date = "2026-01-01"
@@ -118,7 +113,6 @@ def build_api_url():
 
 if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('65')):
     sys.exit(1)
-
 
 
 def fetch_data():
@@ -150,17 +144,19 @@ def fetch_data():
 already_sent = load_already_sent()
 
 
-
 def get_country_by_number(number):
     try:
-        parsed_number = phonenumbers.parse(number, None)
+        parsed_number = phonenumbers.parse("+" + number, None)
         country_code = phonenumbers.region_code_for_number(parsed_number)
-        country_name = pycountry.countries.get(alpha_2=country_code).name
-        flag = chr(127397 + ord(country_code[0])) + chr(127397 + ord(country_code[1]))
-        return country_name, flag
+        if country_code:
+            country = pycountry.countries.get(alpha_2=country_code)
+            if country:
+                country_name = country.name
+                flag = ''.join([chr(127397 + ord(c)) for c in country_code])
+                return country_name, flag
+        return 'Unknown', '🌐'
     except:
         return 'Unknown', '🌐'
-
 
 
 async def sent_messages():
@@ -174,7 +170,7 @@ async def sent_messages():
             service = str(row[3]).strip()
             message = str(row[5]).strip()
 
-            match = re.search(r'\b[A-Za-z0-9\-]{4,20}\b', message)
+            match = re.search(r'(\d{3}-\d{3}|\d{4,8})', message)
             otp = match.group() if match else None
 
             if otp:
@@ -225,7 +221,6 @@ async def sent_messages():
                 logging.info(f"No OTP found in: {message}")
     else:
         logging.info("No data or invalid response.")
-
 
 
 async def main():

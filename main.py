@@ -180,7 +180,7 @@ async def sent_messages():
 
                     country_name, flag = get_country_by_number(number)
                     text = (
-                        "✨ " + flag + " *" + service + " OTP ALERT‼️*\n"
+                        "✨ " + flag + " " + country_name + " *" + service + " OTP ALERT‼️*\n"
                         "🕰️ *Time:* `" + date + "`\n"
                         "📞 *Number:* `" + mask_number(number) + "`\n"
                         "🌍 *Country:* " + country_name + " " + flag + "\n"

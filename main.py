@@ -193,11 +193,11 @@ async def sent_messages():
 
                     keyboard = InlineKeyboardMarkup([
                         [
-                            InlineKeyboardButton("🏆Main Channel", url="https://t.me/+nIVhh9hJWs4wMjBl"),
+                            InlineKeyboardButton("🏆Main Channel", url="https://t.me/TRICK_EARN_R"),
                             InlineKeyboardButton("♻️Backup Channel", url="https://t.me/World_of_Method")
                         ],
                         [
-                            InlineKeyboardButton("📚All Number", url="https://t.me/+6TYPKegN5ts0OTg1")
+                            InlineKeyboardButton("📚All Number", url="https://t.me/+Grzx-jay05BmOTI9")
                         ]
                     ])
 

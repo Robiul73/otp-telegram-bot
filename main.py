@@ -12,10 +12,10 @@ import pycountry
 import phonenumbers
 
 # === CONFIG ===
-BOT_TOKEN = "7610187834:AAHGjQSTaqByRiTYE94ba9pZPUtKkfz14FU"
-CHAT_ID = "-1002818830065"
-USERNAME = "XZRMUNNA1206"
-PASSWORD = "XZRMUNNA8790"
+BOT_TOKEN = "8140488691:AAGpj_X8-d2_rrM6Lj5ZEcSDIVxqPHITUfU"
+CHAT_ID = "-1002578429793"
+USERNAME = "akash660"
+PASSWORD = "Robiul098@#"
 BASE_URL = "http://94.23.120.156"
 LOGIN_PAGE_URL = BASE_URL + "/ints/login"
 LOGIN_POST_URL = BASE_URL + "/ints/signin"
@@ -111,7 +111,7 @@ def build_api_url():
     )
 
 
-if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('65')):
+if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('93')):
     sys.exit(1)
 
 
@@ -188,25 +188,14 @@ async def sent_messages():
                         "🍏 *Service:* `" + service + "`\n"
                         "📬 *Full Message:*\n"
                         "```text\n" + message.strip() + "\n```\n"
-                        "👑 *Powered by:* [@Robiul_TNE_R]"
+                        "👑 *Powered by:* Rony"
                     )
-
-                    keyboard = InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton("🏆Main Channel", url="https://t.me/TRICK_EARN_R"),
-                            InlineKeyboardButton("♻️Backup Channel", url="https://t.me/World_of_Method")
-                        ],
-                        [
-                            InlineKeyboardButton("📚All Number", url="https://t.me/+Grzx-jay05BmOTI9")
-                        ]
-                    ])
 
                     try:
                         await bot.send_message(
                             chat_id=CHAT_ID,
                             text=text,
                             parse_mode="Markdown",
-                            reply_markup=keyboard
                         )
                         save_already_sent(already_sent)
                         logging.info(f"[+] Sent OTP: {otp}")

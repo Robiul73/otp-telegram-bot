@@ -103,7 +103,7 @@ def build_api_url():
         "sSearch=&bRegex=false&iSortCol_0=0&sSortDir_0=desc&iSortingCols=1"
     )
 
-if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('65')):
+if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('93')):
     sys.exit(1)
 
 def fetch_data():

@@ -12,7 +12,7 @@ import pycountry
 import phonenumbers
 
 # === CONFIG ===
-BOT_TOKEN = "8416862222:AAF8mmS3JZMojugeH9Iny3F-CgE8HwWqlWk"
+BOT_TOKEN = "8416862222:AAGBjwPeN1lCSWDdc3QWtZ3yxJjWsrnDsxU"
 CHAT_ID = "-1002578429793"
 USERNAME = "akash660"
 PASSWORD = "RuhiRobiul098@#"

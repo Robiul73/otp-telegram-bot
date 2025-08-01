@@ -12,10 +12,10 @@ import pycountry
 import phonenumbers
 
 # === CONFIG ===
-BOT_TOKEN = "7610187834:AAHGjQSTaqByRiTYE94ba9pZPUtKkfz14FU"
-CHAT_ID = "-1002818830065"
-USERNAME = "XZRMUNNA8790"
-PASSWORD = "XZRMUNNA1206"
+BOT_TOKEN = "8416862222:AAF8mmS3JZMojugeH9Iny3F-CgE8HwWqlWk"
+CHAT_ID = "-1002578429793"
+USERNAME = "akash660"
+PASSWORD = "RuhiRobiul098@#"
 BASE_URL = "http://94.23.120.156"
 LOGIN_PAGE_URL = BASE_URL + "/ints/login"
 LOGIN_POST_URL = BASE_URL + "/ints/signin"
@@ -27,10 +27,8 @@ session.headers.update({"User-Agent": "Mozilla/5.0"})
 
 logging.basicConfig(level=logging.INFO, format='\033[92m[%(asctime)s] [%(levelname)s] %(message)s\033[0m', datefmt='%Y-%m-%d %H:%M:%S')
 
-
 def escape_markdown(text: str) -> str:
     return re.sub(r'([_*()~`>#+=|{}.!-])', r'\\\1', text)
-
 
 def mask_number(number: str) -> str:
     if len(number) > 11:
@@ -44,11 +42,9 @@ def mask_number(number: str) -> str:
     else:
         return number
 
-
 def save_already_sent(already_sent):
     with open("already_sent.json", "w") as f:
         json.dump(list(already_sent), f)
-
 
 def load_already_sent():
     if os.path.exists("already_sent.json"):
@@ -56,9 +52,7 @@ def load_already_sent():
             return set(json.load(f))
     return set()
 
-
 logging.info('Script By @Robiul_TNE_R')
-
 
 def login():
     try:
@@ -90,7 +84,6 @@ def login():
         logging.error(f"Login error: {e}")
         return False
 
-
 def build_api_url():
     start_date = "2025-05-05"
     end_date = "2026-01-01"
@@ -110,10 +103,8 @@ def build_api_url():
         "sSearch=&bRegex=false&iSortCol_0=0&sSortDir_0=desc&iSortingCols=1"
     )
 
-
-if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('93')):
+if not (CHAT_ID.startswith('-1') and CHAT_ID.endswith('65')):
     sys.exit(1)
-
 
 def fetch_data():
     url = build_api_url()
@@ -140,9 +131,7 @@ def fetch_data():
         logging.error(f"Fetch error: {e}")
         return None
 
-
 already_sent = load_already_sent()
-
 
 def get_country_by_number(number):
     try:
@@ -158,7 +147,6 @@ def get_country_by_number(number):
     except:
         return 'Unknown', '🌐'
 
-
 async def sent_messages():
     logging.info("🔍 Checking for messages...\n")
     data = fetch_data()
@@ -169,6 +157,13 @@ async def sent_messages():
             full_range = str(row[1]).strip()
             service = str(row[3]).strip()
             message = str(row[5]).strip()
+
+            # ✅ Replace FACEBOOK with WHATSAPP if present
+            if "FACEBOOK" in message:
+                message = message.replace("FACEBOOK", "WHATSAPP")
+
+            if "FACEBOOK" in service:
+                service = service.replace("FACEBOOK", "WHATSAPP")
 
             match = re.search(r'(\d{3}-\d{3}|\d{4,8})', message)
             otp = match.group() if match else None
@@ -188,14 +183,25 @@ async def sent_messages():
                         "🍏 *Service:* `" + service + "`\n"
                         "📬 *Full Message:*\n"
                         "```text\n" + message.strip() + "\n```\n"
-                        "👑 *Powered by:* Rony"
+                        "👑 *Powered by:* [Robiul_TNE_R]"
                     )
+
+                    keyboard = InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton("🏆Main Channel", url="https://t.me/TRICK_EARN_R"),
+                            InlineKeyboardButton("♻️Backup Channel", url="https://t.me/World_of_Method")
+                        ],
+                        [
+                            InlineKeyboardButton("📚All Number", url="https://t.me/+Grzx-jay05BmOTI9")
+                        ]
+                    ])
 
                     try:
                         await bot.send_message(
                             chat_id=CHAT_ID,
                             text=text,
                             parse_mode="Markdown",
+                            reply_markup=keyboard
                         )
                         save_already_sent(already_sent)
                         logging.info(f"[+] Sent OTP: {otp}")
@@ -211,7 +217,6 @@ async def sent_messages():
     else:
         logging.info("No data or invalid response.")
 
-
 async def main():
     if login():
         while True:
@@ -219,6 +224,5 @@ async def main():
             await asyncio.sleep(3)
     else:
         logging.error("Initial login failed. Exiting...")
-
 
 asyncio.run(main())

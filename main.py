@@ -12,8 +12,8 @@ import pycountry
 import phonenumbers
 
 # === CONFIG ===
-BOT_TOKEN = "8416862222:AAF8mmS3JZMojugeH9Iny3F-CgE8HwWqlWk"
-CHAT_ID = "-1002578429793"
+BOT_TOKEN = "7610187834:AAHGjQSTaqByRiTYE94ba9pZPUtKkfz14FU"
+CHAT_ID = "-1002818830065"
 USERNAME = "akash660"
 PASSWORD = "RuhiRobiul098@#"
 BASE_URL = "http://94.23.120.156"
